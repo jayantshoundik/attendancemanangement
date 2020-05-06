@@ -1,0 +1,151 @@
+{% extends 'adminpanel/layout.html' %}
+{% block content %}
+            <div class="content-page">
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row page-title">
+                            <div class="col-md-12">
+                                <nav aria-label="breadcrumb" class="float-right mt-1">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">WeberSparsh</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Advanced</li>
+                                    </ol>
+                                </nav>
+                                <h4 class="mb-1 mt-0">Manage Employee</h4>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- select -->
+                     <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="header-title mt-0 mb-1">Add Leave Type</h4>
+                                    <p class="sub-header">
+                                        You can add Leave Type here
+                                    </p>
+                                    <form  method="POST" action =  "" enctype="multipart/form-data">
+                                    <div class="row">
+                                        
+                                            
+                                                {% csrf_token %}
+                                                {% for field in form %}
+                                                <div class="col-xl-3 col-sm-6">
+                                                    <div class="form-group mt-3 mt-sm-0">
+                                                    <label class="form-control-label">{{ field.label_tag }}</label>
+                                                    <div class="input-group input-group-merge">
+                                                        
+                                                        {{ field }}<br>
+                                                        
+                                                    {% for error in field.errors %}
+                                                      <p style="color: red">{{ error }}</p>
+                                                    {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                  
+                                                {% endfor %}
+                                                 <div class="form-group mb-0 justify-content-end row">
+                                                    <div class="col-9">
+                                                        <button type="submit" class="btn btn-info">Submit</button>
+                                                    </div>
+                                                </div>
+
+                                       
+                                        
+                                    </div>
+                                </form>
+                                </div> <!-- end card-body -->
+                            </div> <!-- end card-->
+                        </div> <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <h4 class="header-title mt-0 mb-1">All Leave</h4>
+                                    <p class="sub-header">
+                                        
+                                    </p>
+
+                                    <table id="selection-datatable" class="table dt-responsive nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th>Type</th>
+                                                <th>Limit</th>
+
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                    
+                                    
+                                        <tbody>
+                                            {% for leavetype in leavetypes %}
+                                                
+                                                <tr>
+                                                    <td>{{leavetype.leavetype}}</td>
+                                                    <td>{{leavetype.limit}}</td>
+                                                    <td>{{leavetype.status}}</td>
+                                                    <td>
+                                                        <button type="button" data-url="{% url 'leavetypeupdate' leavetype.id %}" class="btn btn-secondary edit_leavetype" data-toggle="modal" data-target="#bs-example-modal-xl">Edit</button>
+                                                        <button>Delete</button>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                
+                                </div> <!-- end card body-->
+                            </div> <!-- end card -->
+                        </div><!-- end col-->
+                    </div>
+                </div> <!-- content -->
+                <div class="modal fade" id="bs-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myExtraLargeModalLabel">Extra large modal</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            
+                        </div>                                                
+                    </div>
+                </div>
+            </div>
+
+{% endblock  %}
+{% block custom_script %}
+<script> 
+$(document).on('click','.edit_leavetype',function(){
+    var btn = $(this);  
+    $.ajax({
+        url: btn.attr("data-url"),  // 
+        type: 'get',
+        dataType: 'json',
+        beforeSend: function () {
+        $("#bs-example-modal-xl").modal("show");
+        },
+        success: function (data) {
+            $("#bs-example-modal-xl .modal-body").html(data.html_form);
+        }
+    });
+});
+</script>
+
+{% endblock %}
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+     

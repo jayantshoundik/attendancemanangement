@@ -1,0 +1,390 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>WeberSparsh - Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
+
+        <link href="{% static 'assets/libs/flatpickr/flatpickr.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css' %}" rel="stylesheet" />
+        <link href="{% static 'assets/libs/select2/select2.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/libs/multiselect/multi-select.css' %}" rel="stylesheet" type="text/css" />
+        <!-- App css -->
+        <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/css/icons.min.css '%}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/css/app.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/libs/dropzone/dropzone.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/libs/summernote/summernote-bs4.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/libs/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/libs/datatables/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/libs/datatables/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/libs/datatables/select.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" /> 
+        {% block custom_css %}
+        {% endblock %}
+    </head>
+
+    <body>
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Topbar Start -->
+            <div class="navbar navbar-expand flex-column flex-md-row navbar-custom">
+                <div class="container-fluid">
+                    <!-- LOGO -->
+                    <a href="index.html" class="navbar-brand mr-0 mr-md-2 logo">
+                        <span class="logo-lg">
+                            <img src="{% static 'assets/images/logo.png' %}" alt="" height="24" />
+                            <span class="d-inline h5 ml-1 text-logo">WeberSparsh</span>
+                        </span>
+                        <span class="logo-sm">
+                            <img src="{% static 'assets/images/logo.png' %}" alt="" height="24">
+                        </span>
+                    </a>
+
+                    <ul class="navbar-nav bd-navbar-nav flex-row list-unstyled menu-left mb-0">
+                        <li class="">
+                            <button class="button-menu-mobile open-left disable-btn">
+                                <i data-feather="menu" class="menu-icon"></i>
+                                <i data-feather="x" class="close-icon"></i>
+                            </button>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav flex-row ml-auto d-flex list-unstyled topnav-menu float-right mb-0">
+                        
+
+
+                        <li class="dropdown notification-list" data-toggle="tooltip" data-placement="left"
+                            title="8 new unread notifications">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                                aria-expanded="false">
+                                <i data-feather="bell"></i>
+                                <span class="noti-icon-badge"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+
+                                <!-- item-->
+                                <div class="dropdown-item noti-title border-bottom">
+                                    <h5 class="m-0 font-size-16">
+                                        <span class="float-right">
+                                            <a href="" class="text-dark">
+                                                <small>Clear All</small>
+                                            </a>
+                                        </span>Notification
+                                    </h5>
+                                </div>
+
+                                <div class="slimscroll noti-scroll">
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom">
+                                        <div class="notify-icon bg-primary"><i class="uil uil-user-plus"></i></div>
+                                        <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small>
+                                        </p>
+                                    </a>
+                                </div>
+
+                                <!-- All-->
+                                <a href="javascript:void(0);"
+                                    class="dropdown-item text-center text-primary notify-item notify-all border-top">
+                                    View all
+                                    <i class="fi-arrow-right"></i>
+                                </a>
+
+                            </div>
+                        </li>
+
+
+                        <li class="dropdown notification-list align-self-center profile-dropdown">
+                            <a class="nav-link dropdown-toggle nav-user mr-0" data-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="false" aria-expanded="false">
+                                <div class="media user-profile ">
+                                    <img src="" alt="user-image" class="rounded-circle align-self-center" />
+                                    <div class="media-body text-left">
+                                        <h6 class="pro-user-name ml-2 my-0">
+                                            <span>{{ request.user.first_name }} {{request.user.last_name}}</span>
+                                            <span class="pro-user-desc text-muted d-block mt-1">{{request.user.username}} </span>
+                                        </h6>
+                                    </div>
+                                    <span data-feather="chevron-down" class="ml-2 align-self-center"></span>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu profile-dropdown-items dropdown-menu-right">
+                                <a href="#" class="dropdown-item notify-item">
+                                    <i data-feather="user" class="icon-dual icon-xs mr-2"></i>
+                                    <span>My Account</span>
+                                </a>
+
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i data-feather="settings" class="icon-dual icon-xs mr-2"></i>
+                                    <span>Settings</span>
+                                </a>
+
+                                
+
+                                <div class="dropdown-divider"></div>
+
+                                <a href="{% url 'logout' %}" class="dropdown-item notify-item">
+                                    <i data-feather="log-out" class="icon-dual icon-xs mr-2"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- end Topbar -->
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="left-side-menu">
+                <div class="media user-profile mt-2 mb-2">
+                    <img src="{{request.user.avatar}}" class="avatar-sm rounded-circle mr-2" alt="WeberSparsh" />
+                    <img src="{{request.user.avatar}}" class="avatar-xs rounded-circle mr-2" alt="WeberSparsh" />
+
+                    <div class="media-body">
+                        <h6 class="pro-user-name mt-0 mb-0">{{ request.user.first_name }} {{request.user.last_name}}</h6>
+                        <span class="pro-user-desc">{{ request.user.first_name }}</span>
+                    </div>
+                    <div class="dropdown align-self-center profile-dropdown-menu">
+                        <a class="dropdown-toggle mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                            aria-expanded="false">
+                            <span data-feather="chevron-down"></span>
+                        </a>
+                        <div class="dropdown-menu profile-dropdown">
+                           
+
+                            <a href="pages-lock-screen.html" class="dropdown-item notify-item">
+                                <i data-feather="lock" class="icon-dual icon-xs mr-2"></i>
+                                <span>Lock Screen</span>
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i data-feather="log-out" class="icon-dual icon-xs mr-2"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-content">
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu" class="slimscroll-menu">
+                        <ul class="metismenu" id="menu-bar">
+                            <li class="menu-title">Navigation</li>
+
+                            <li>
+                                <a href="index.html">
+                                    <i data-feather="home"></i>
+                                    <span class="badge badge-success float-right">1</span>
+                                    <span> Dashboard </span>
+                                </a>
+                            </li>
+                            <li class="menu-title">Apps</li>
+                            <li>
+                                <a href="apps-calendar.html">
+                                    <i data-feather="calendar"></i>
+                                    <span> Calendar </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);">
+                                    <i data-feather="inbox"></i>
+                                    <span> Manage Attendance </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li>
+                                        <a href="{% url 'attendance' %}">Mark attendance</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);">
+                                    <i data-feather="briefcase"></i>
+                                    <span> Manage Leave </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+    
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li>
+                                        <a href="{% url 'applyleave' %}">Apply Leave</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+
+                            <li class="menu-title">Report</li>
+
+                            <li>
+                                <a href="javascript: void(0);">
+                                    <i data-feather="package"></i>
+                                    <span> Attendance Report </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li>
+                                        <a href="components-bootstrap.html">Bootstrap UI</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript: void(0);" aria-expanded="false">Icons
+                                            <span class="menu-arrow"></span>
+                                        </a>
+                                        <ul class="nav-third-level" aria-expanded="false">
+                                            <li>
+                                                <a href="icons-feather.html">Feather Icons</a>
+                                            </li>
+                                            <li>
+                                                <a href="icons-unicons.html">Unicons Icons</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="widgets.html">Widgets</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);" aria-expanded="false">
+                                    <i data-feather="file-text"></i>
+                                    <span> Leave Report </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li>
+                                        <a href="forms-basic.html">Basic Elements</a>
+                                    </li>
+                                    <li>
+                                        <a href="forms-advanced.html">Advanced</a>
+                                    </li>
+                                    <li>
+                                        <a href="forms-validation.html">Validation</a>
+                                    </li>
+                                    <li>
+                                        <a href="forms-wizard.html">Wizard</a>
+                                    </li>
+                                    <li>
+                                        <a href="forms-editor.html">Editor</a>
+                                    </li>
+                                    <li>
+                                        <a href="forms-file-uploads.html">File Uploads</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            
+                        </ul>
+                    </div>
+                    <!-- End Sidebar -->
+
+                    <div class="clearfix"></div>
+                </div>
+                <!-- Sidebar -left -->
+
+            </div>
+            {% block content %}
+
+            {% endblock %}
+        
+        </div>
+        <!-- END wrapper -->
+
+        <!-- Right Sidebar -->
+        <div class="right-bar">
+            <div class="rightbar-title">
+                <a href="javascript:void(0);" class="right-bar-toggle float-right">
+                    <i data-feather="x-circle"></i>
+                </a>
+                <h5 class="m-0">Customization</h5>
+            </div>
+    
+            <div class="slimscroll-menu">
+    
+                <h5 class="font-size-16 pl-3 mt-4">Choose Variation</h5>
+                <div class="p-3">
+                    <h6>Default</h6>
+                    <a href="index.html"><img src="assets/images/layouts/vertical.jpg" alt="vertical" class="img-thumbnail demo-img" /></a>
+                </div>
+                <div class="px-3 py-1">
+                    <h6>Top Nav</h6>
+                    <a href="layouts-horizontal.html"><img src="assets/images/layouts/horizontal.jpg" alt="horizontal" class="img-thumbnail demo-img" /></a>
+                </div>
+                <div class="px-3 py-1">
+                    <h6>Dark Side Nav</h6>
+                    <a href="layouts-dark-sidebar.html"><img src="assets/images/layouts/vertical-dark-sidebar.jpg" alt="dark sidenav" class="img-thumbnail demo-img" /></a>
+                </div>
+                <div class="px-3 py-1">
+                    <h6>Condensed Side Nav</h6>
+                    <a href="layouts-dark-sidebar.html"><img src="assets/images/layouts/vertical-condensed.jpg" alt="condensed" class="img-thumbnail demo-img" /></a>
+                </div>
+                <div class="px-3 py-1">
+                    <h6>Fixed Width (Boxed)</h6>
+                    <a href="layouts-boxed.html"><img src="assets/images/layouts/boxed.jpg" alt="boxed"
+                            class="img-thumbnail demo-img" /></a>
+                </div>
+            </div> <!-- end slimscroll-menu-->
+        </div>
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- Vendor js -->
+        <script src="{% static 'assets/js/vendor.min.js' %}"></script>
+
+        <!-- optional plugins -->
+        <script src="{% static 'assets/libs/moment/moment.min.js' %}"></script>
+        <script src="{% static 'assets/libs/apexcharts/apexcharts.min.js' %}"></script>
+        <script src="{% static 'assets/libs/flatpickr/flatpickr.min.js' %}"></script>
+
+        <!-- page js -->
+        <script src="{% static 'assets/js/pages/dashboard.init.js' %}"></script>
+
+        <!-- App js --> 
+         <script src="{% static 'assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js' %}"></script>
+        <script src="{% static 'assets/libs/select2/select2.min.js' %}"></script>
+        <script src="{% static 'assets/libs/multiselect/jquery.multi-select.js' %}"></script>
+        <script src="{% static 'assets/js/pages/form-advanced.init.js' %}"></script>
+
+        <script src="{% static 'assets/libs/datatables/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'assets/libs/datatables/dataTables.bootstrap4.min.js' %}"></script>
+        <script src="{% static 'assets/libs/datatables/dataTables.responsive.min.js' %}"></script>
+        <script src="{% static 'assets/libs/datatables/responsive.bootstrap4.min.js' %}"></script>
+        
+        <script src="{% static 'assets/libs/datatables/dataTables.buttons.min.js' %}"></script>
+        <script src="{% static 'assets/libs/datatables/buttons.bootstrap4.min.js' %}"></script>
+        <script src="{% static 'assets/libs/datatables/buttons.html5.min.js' %}"></script>
+        <script src="{% static 'assets/libs/datatables/buttons.flash.min.js' %}"></script>
+        <script src="{% static 'assets/libs/datatables/buttons.print.min.js' %}"></script>
+
+        <script src="{% static 'assets/libs/datatables/dataTables.keyTable.min.js' %}"></script>
+        <script src="{% static 'assets/libs/datatables/dataTables.select.min.js' %}"></script>
+        <script src="{% static 'assets/js/pages/datatables.init.js' %}"></script>
+
+        <!-- Datatables init -->
+        
+        <!-- App js -->
+        <script src="{% static 'assets/js/app.min.js' %}"></script>
+        
+        <script src="{% static 'assets/libs/summernote/summernote-bs4.min.js' %}"></script>
+       <script type="text/javascript">
+           $(document).ready(function(){
+               $("#summernote-editor").summernote({height:250,minHeight:null,maxHeight:null,focus:!1}),
+               $("#summernote-inline").summernote({airMode:!0})});
+       </script>
+       {% block custom_script %}
+
+       {% endblock %}
+        
+    </body>
+</html>

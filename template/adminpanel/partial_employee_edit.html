@@ -1,0 +1,29 @@
+<form  method="POST" action ="{% url 'employeeupdate' form.instance.pk %}" enctype="multipart/form-data">
+    <div class="row">
+        
+            
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="col-xl-3 col-sm-6">
+                    <div class="form-group mt-3 mt-sm-0">
+                    <label class="form-control-label">{{ field.label_tag }}</label>
+                    <div class="input-group input-group-merge">
+                        
+                        {{ field }}<br>
+                        
+                    {% for error in field.errors %}
+                      <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+                  
+                {% endfor %}
+                <button type="submit" class="btn btn-success">
+                    Submit
+                </button>
+
+       
+        
+    </div>
+</form>
