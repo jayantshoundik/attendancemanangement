@@ -1,4 +1,9 @@
+{% if request.user.roles_id == 1 %}
 {% extends 'adminpanel/layout.html' %}
+{% endif %}
+{% if request.user.roles_id ==1 %}
+{% extends 'front/managerlayout.html' %}
+{% endif %}
 {% block content %}
             <div class="content-page">
                 <div class="content">

@@ -117,7 +117,7 @@
 
                                 <div class="dropdown-divider"></div>
 
-                                <a href="{% url 'logout' %}" class="dropdown-item notify-item">
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <i data-feather="log-out" class="icon-dual icon-xs mr-2"></i>
                                     <span>Logout</span>
                                 </a>
@@ -210,24 +210,9 @@
                                     </li>
                                 </ul>
                             </li>
+                            
                             <li>
-                                <a href="javascript: void(0);">
-                                    <i data-feather="briefcase"></i>
-                                    <span> Manage Manager </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-    
-                                <ul class="nav-second-level" aria-expanded="false">
-                                    <li>
-                                        <a href="{% url 'manageradd' %}">Add Manger</a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'managers' %}">Manager List</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="{% url 'attendances' %}">
+                                <a href="{% url 'manageattendance' %}">
                                     <i data-feather="bookmark"></i>
                                     <span> Manage Attendance </span>
                                     <span class="menu-arrow"></span>
@@ -236,7 +221,7 @@
                                 
                             </li>
                             <li>
-                                <a href="{% url 'attendances' %}">
+                                <a href="{% url 'manageleave' %}">
                                     <i data-feather="bookmark"></i>
                                     <span> Manage Leave </span>
                                     <span class="menu-arrow"></span>
@@ -245,23 +230,7 @@
                                 
                             </li>
                             <li class="menu-title">Custom</li>
-                            <li>
-                                <a href="{% url 'leavetype' %}">
-                                    <i data-feather="file-text"></i>
-                                    <span> Leave Type </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                
-                            </li>
-
-                            <li>
-                                <a href="{% url 'department' %}">
-                                    <i data-feather="layout"></i>
-                                    <span> Manage Department </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                               
-                            </li>
+                           
 
                             <li class="menu-title">Report</li>
 

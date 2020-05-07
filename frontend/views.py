@@ -19,7 +19,12 @@ def attendance(request):
     userdetail = User.objects.get(username = request.user.username)
     attendancedate = datetime.date.today()
     usertodayattendance = Attendance.objects.filter(reference=request.user,attendancedate=attendancedate)
-    return render(request, 'front/attendance.html',{'userattendance':usertodayattendance})
+   
+    if not usertodayattendance:
+       usertodayattendance = usertodayattendance
+    else:
+        usertodayattendance = usertodayattendance[0]
+    return render(request, 'front/attendance.html',{'usertodayattendance':usertodayattendance})
 
 @employee_required
 def attendancemark(request):
