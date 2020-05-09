@@ -10,4 +10,7 @@ urlpatterns = [
      path('attendance/',views.attendance,name = 'attendance'),
      path('attendancemark/',views.attendancemark,name = 'attendancemark'),
      path('applyleave/',views.applyleave,name = 'applyleave'),
+     path('attendancereport/',views.attendancereport,name = 'attendancereport'),
+     path('leavereport/',views.leavereport,name = 'leavereport'),
+      path('calender/',views.calender,name = 'calender'),
 ]

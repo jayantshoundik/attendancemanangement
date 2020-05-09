@@ -4,9 +4,9 @@ from adminpanel import views
 
 urlpatterns = [
      path('dashboard',views.index,name = 'dashboard'),
-     path('employee/add',views.addEmployee,name = 'employeeadd'),
-     path('employees',views.employeeList,name = 'employees'),
-     path('employeeupdate/<int:pk>',views.employeeEdit,name = 'employeeupdate'),
+     path('employee/add',views.addEmployee,name = 'adminemployeeadd'),
+     path('employees',views.employeeList,name = 'adminemployees'),
+     path('employeeupdate/<int:pk>',views.employeeEdit,name = 'adminemployeeupdate'),
      path('manager/add',views.addManager,name = 'manageradd'),
      path('managers',views.managerList,name = 'managers'),
      path('managerupdate/<int:pk>',views.managerEdit,name = 'managerupdate'),
@@ -17,5 +17,6 @@ urlpatterns = [
      path('approvedattendance/<int:pk>',views.approvAttendance,name = 'approvedattendance'),
      path('approvedleave/<int:pk>',views.approveLeave,name = 'approvedleave'),
      path('department',views.addDepartment,name = 'department'),
+     path('calender',views.calender,name = 'calender'),
 
 ]

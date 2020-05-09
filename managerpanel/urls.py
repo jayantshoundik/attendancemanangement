@@ -12,5 +12,6 @@ urlpatterns = [
      path('employeeupdate/<int:pk>',views.employeeEdit,name = 'employeeupdate'),
      path('approvedattendance/<int:pk>',views.approvAttendance,name = 'approvedattendance'),
      path('approvedleave/<int:pk>',views.approveLeave,name = 'approvedleave'),
+     path('managercalender/',views.calender,name = 'managercalender'),
 
 ]

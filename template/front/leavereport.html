@@ -1,0 +1,87 @@
+{% extends 'front/layout.html' %}
+{% block content %}
+            <div class="content-page">
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row page-title">
+                            <div class="col-md-12">
+                                <nav aria-label="breadcrumb" class="float-right mt-1">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">WeberSparsh</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Advanced</li>
+                                    </ol>
+                                </nav>
+                                <h4 class="mb-1 mt-0">Manage Attendance</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- end row -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <h4 class="header-title mt-0 mb-1">My Attendance Report</h4>
+                                    <p class="sub-header">
+                                        
+                                    </p>
+
+                                    <table id="selection-datatable" class="table dt-responsive " width='100%'>
+                                        <thead>
+                                            <tr>
+                                                <th>Leave type</th>
+                                                <th>Start</th>
+                                                <th>End</th>
+                                                <th>Reason</th>
+                                                <th>Comment</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                    
+                                    
+                                        <tbody>
+                                            {% for manageleave in manageleaves %}
+                                                
+                                                <tr>
+                                                   
+                                                    <td>{{manageleave.leavetype}}</td>
+                                                    <td>{{manageleave.leavestart}}</td>
+                                                    <td>{{manageleave.leaveend}}</td>
+                                                    <td>{{manageleave.reason}}</td>
+                                                    <td>{{manageleave.comment}}</td>
+                                                    <td>
+                                                        {% if manageleave.status == 0 %}
+                                                            <span>UnApproved</span>
+                                                             {% endif %}
+                                                        {% if manageleave.status == 1 %}
+                                                            <span>Approved</span>
+                                                             {% endif %}
+                                                    </td>
+                                                   
+                                                </tr>
+                                            {% endfor %}
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                
+                                </div> <!-- end card body-->
+                            </div> <!-- end card -->
+                        </div><!-- end col-->
+                    </div>
+                </div> <!-- content -->
+              
+
+
+                
+{% endblock  %}
+
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+     

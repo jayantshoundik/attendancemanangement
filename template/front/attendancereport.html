@@ -1,4 +1,4 @@
-{% extends 'adminpanel/layout.html' %}
+{% extends 'front/layout.html' %}
 {% block content %}
             <div class="content-page">
                 <div class="content">
@@ -12,47 +12,50 @@
                                         <li class="breadcrumb-item active" aria-current="page">Advanced</li>
                                     </ol>
                                 </nav>
-                                <h4 class="mb-1 mt-0">Manage Employee</h4>
+                                <h4 class="mb-1 mt-0">Manage Attendance</h4>
                             </div>
                         </div>
                     </div>
                     
+                    <!-- end row -->
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
 
-                                    <h4 class="header-title mt-0 mb-1">All Employee</h4>
+                                    <h4 class="header-title mt-0 mb-1">My Attendance Report</h4>
                                     <p class="sub-header">
                                         
                                     </p>
 
-                                    <table id="selection-datatable" class="table dt-responsive nowrap" width="100%">
+                                    <table id="selection-datatable" class="table dt-responsive " width='100%'>
                                         <thead>
                                             <tr>
-                                                <th>Employee Username </th>
-                                                <th>Email</th>
-                                                <th>Department</th>
-
-
+                                                <th>Date</th>
+                                                <th>Time In</th>
+                                                <th>Time Out</th>
                                                 <th>Status</th>
-                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                     
                                     
                                         <tbody>
-                                            {% for employee in employees %}
+                                            {% for manageattendance in manageattendances %}
                                                 
                                                 <tr>
-                                                    <td>{{employee.id}}</td>
-                                                    <td>{{employee.email}}</td>
-                                                    <td>{{employee.department.name}}</td>
-                                                    <td>{{employee.status}}</td>
+                                                   
+                                                    <td>{{manageattendance.attendancedate}}</td>
+                                                    <td>{{manageattendance.timein}}</td>
+                                                    <td>{{manageattendance.timeout}}</td>
                                                     <td>
-                                                        <button type="button" data-url="{% url 'adminemployeeupdate' employee.id %}" class="btn btn-secondary edit_leavetype" data-toggle="modal" data-target="#bs-example-modal-xl">Edit</button>
-                                                        <button>Delete</button>
+                                                        {% if manageattendance.status == 0 %}
+                                                            <span>UnApproved</span>
+                                                             {% endif %}
+                                                        {% if manageattendance.status == 1 %}
+                                                            <span>Approved</span>
+                                                             {% endif %}
                                                     </td>
+                                                   
                                                 </tr>
                                             {% endfor %}
                                             
@@ -82,22 +85,21 @@
             </div>
 
 
+                
 {% endblock  %}
 {% block custom_script %}
 <script> 
-$(document).on('click','.edit_leavetype',function(){
+$(document).on('click','#approved_button',function(){
     var btn = $(this);  
     $.ajax({
         url: btn.attr("data-url"),  // 
         type: 'get',
         dataType: 'json',
         beforeSend: function () {
-            alert("dlkskdl")
-        $("#bs-example-modal-xl").modal("show");
         },
         success: function (data) {
-            alert(data)
-            $("#bs-example-modal-xl .modal-body").html(data.html_form);
+        
+             window.location.reload()
         }
     });
 });

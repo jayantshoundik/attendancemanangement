@@ -20,13 +20,18 @@ def addEmployee(request):
             form.save()  
     else:
         form = EmployeeForm()
-    return render(request, 'adminpanel/addemployee.html', {'form': form})
+    return render(request, 'front/addemployee.html', {'form': form})
 
 @admin_required
 def employeeList(request):
     role = Role.objects.get(role='EMPLOYEE')
     employees = User.objects.filter(roles=role)
-    return render(request, 'adminpanel/employeelist.html', {'employees': employees})
+    return render(request, 'front/employeelist.html', {'employees': employees})
+@admin_required
+def calender(request):
+    all_events = User.objects.filter(roles_id = 3)
+    
+    return render(request, 'front/calender.html',{'events':all_events})
 
 @admin_required
 def employeeEdit(request,pk):

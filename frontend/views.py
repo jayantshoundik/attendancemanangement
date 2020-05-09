@@ -70,6 +70,23 @@ def applyleave(request):
     appliedleaves = Leave.objects.filter(reference = request.user)
     return render(request, 'front/applyleave.html', {'form': form,'appliedleaves':appliedleaves})
 
+@employee_required
+def attendancereport(request):
+    manageattendances = Attendance.objects.filter(reference = request.user).order_by('-attendancedate')
+    return render(request, 'front/attendancereport.html', {'manageattendances':manageattendances})
+
+@employee_required
+def leavereport(request):
+    manageleaves = Leave.objects.filter(reference = request.user).order_by('-leavestart')
+    return render(request, 'front/leavereport.html', {'manageleaves':manageleaves})
+
+@employee_required
+def calender(request):
+    all_events = Attendance.objects.filter(reference = request.user)
+    return render(request, 'front/calender.html',{'events':all_events})
+
+
+
 def login(request):
     if request.user.is_authenticated:
         return redirect('dashboard')

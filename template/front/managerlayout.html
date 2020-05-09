@@ -26,7 +26,8 @@
         <link href="{% static 'assets/libs/datatables/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'assets/libs/datatables/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'assets/libs/datatables/select.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" /> 
-
+        {% block custom_css %}
+        {% endblock %}
     </head>
 
     <body>
@@ -95,29 +96,9 @@
                                 </div>
                             </a>
                             <div class="dropdown-menu profile-dropdown-items dropdown-menu-right">
-                                <a href="pages-profile.html" class="dropdown-item notify-item">
-                                    <i data-feather="user" class="icon-dual icon-xs mr-2"></i>
-                                    <span>My Account</span>
-                                </a>
+                               
 
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i data-feather="settings" class="icon-dual icon-xs mr-2"></i>
-                                    <span>Settings</span>
-                                </a>
-
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i data-feather="help-circle" class="icon-dual icon-xs mr-2"></i>
-                                    <span>Support</span>
-                                </a>
-
-                                <a href="pages-lock-screen.html" class="dropdown-item notify-item">
-                                    <i data-feather="lock" class="icon-dual icon-xs mr-2"></i>
-                                    <span>Lock Screen</span>
-                                </a>
-
-                                <div class="dropdown-divider"></div>
-
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="{% url 'logout' %}" class="dropdown-item notify-item">
                                     <i data-feather="log-out" class="icon-dual icon-xs mr-2"></i>
                                     <span>Logout</span>
                                 </a>
@@ -132,8 +113,8 @@
             <!-- ========== Left Sidebar Start ========== -->
             <div class="left-side-menu">
                 <div class="media user-profile mt-2 mb-2">
-                    <img src="{{ MEDIA_URL }} {{ request.user.avatar }}" class="avatar-sm rounded-circle mr-2" alt="WeberSparsh" />
-                    <img src="{{ MEDIA_URL }} {{ request.user.avatar }}" class="avatar-xs rounded-circle mr-2" alt="WeberSparsh" />
+                    <img src="{% if request.user.avatar  %}{{request.user.avatar.url}}{% endif  %}" class="avatar-sm rounded-circle mr-2" alt="WeberSparsh" />
+                    <img src="{% if request.user.avatar  %}{{request.user.avatar.url}}{% endif  %}" class="avatar-xs rounded-circle mr-2" alt="WeberSparsh" />
 
                     <div class="media-body">
                         <h6 class="pro-user-name mt-0 mb-0">{{ request.user.first_name }} {{request.user.last_name}}</h6>
@@ -145,29 +126,7 @@
                             <span data-feather="chevron-down"></span>
                         </a>
                         <div class="dropdown-menu profile-dropdown">
-                            <a href="pages-profile.html" class="dropdown-item notify-item">
-                                <i data-feather="user" class="icon-dual icon-xs mr-2"></i>
-                                <span>My Account</span>
-                            </a>
-
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i data-feather="settings" class="icon-dual icon-xs mr-2"></i>
-                                <span>Settings</span>
-                            </a>
-
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i data-feather="help-circle" class="icon-dual icon-xs mr-2"></i>
-                                <span>Support</span>
-                            </a>
-
-                            <a href="pages-lock-screen.html" class="dropdown-item notify-item">
-                                <i data-feather="lock" class="icon-dual icon-xs mr-2"></i>
-                                <span>Lock Screen</span>
-                            </a>
-
-                            <div class="dropdown-divider"></div>
-
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <a href="{% url 'logout' %}" class="dropdown-item notify-item">
                                 <i data-feather="log-out" class="icon-dual icon-xs mr-2"></i>
                                 <span>Logout</span>
                             </a>
@@ -189,7 +148,7 @@
                             </li>
                             <li class="menu-title">Apps</li>
                             <li>
-                                <a href="#">
+                                <a href="{% url 'managercalender' %}">
                                     <i data-feather="calendar"></i>
                                     <span> Calendar </span>
                                 </a>

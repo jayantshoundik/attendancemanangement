@@ -1,4 +1,4 @@
-{% extends 'adminpanel/layout.html' %}
+{% extends 'front/managerlayout.html' %}
 {% block content %}
             <div class="content-page">
                 <div class="content">
@@ -50,7 +50,7 @@
                                                     <td>{{employee.department.name}}</td>
                                                     <td>{{employee.status}}</td>
                                                     <td>
-                                                        <button type="button" data-url="{% url 'adminemployeeupdate' employee.id %}" class="btn btn-secondary edit_leavetype" data-toggle="modal" data-target="#bs-example-modal-xl">Edit</button>
+                                                        <button type="button" data-url="{% url 'employeeupdate' employee.id %}" class="btn btn-secondary edit_leavetype" data-toggle="modal" data-target="#bs-example-modal-xl">Edit</button>
                                                         <button>Delete</button>
                                                     </td>
                                                 </tr>

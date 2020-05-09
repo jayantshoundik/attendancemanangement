@@ -26,7 +26,8 @@
         <link href="{% static 'assets/libs/datatables/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'assets/libs/datatables/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'assets/libs/datatables/select.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" /> 
-
+        {% block custom_css %}
+        {% endblock %}
     </head>
 
     <body>
@@ -37,7 +38,7 @@
             <div class="navbar navbar-expand flex-column flex-md-row navbar-custom">
                 <div class="container-fluid">
                     <!-- LOGO -->
-                    <a href="index.html" class="navbar-brand mr-0 mr-md-2 logo">
+                    <a href="#" class="navbar-brand mr-0 mr-md-2 logo">
                         <span class="logo-lg">
                             <img src="{% static 'assets/images/logo.png'  %}" alt="" height="24" />
                             <span class="d-inline h5 ml-1 text-l">WeberSparsh</span>
@@ -95,27 +96,7 @@
                                 </div>
                             </a>
                             <div class="dropdown-menu profile-dropdown-items dropdown-menu-right">
-                                <a href="pages-profile.html" class="dropdown-item notify-item">
-                                    <i data-feather="user" class="icon-dual icon-xs mr-2"></i>
-                                    <span>My Account</span>
-                                </a>
-
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i data-feather="settings" class="icon-dual icon-xs mr-2"></i>
-                                    <span>Settings</span>
-                                </a>
-
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i data-feather="help-circle" class="icon-dual icon-xs mr-2"></i>
-                                    <span>Support</span>
-                                </a>
-
-                                <a href="pages-lock-screen.html" class="dropdown-item notify-item">
-                                    <i data-feather="lock" class="icon-dual icon-xs mr-2"></i>
-                                    <span>Lock Screen</span>
-                                </a>
-
-                                <div class="dropdown-divider"></div>
+                                
 
                                 <a href="{% url 'logout' %}" class="dropdown-item notify-item">
                                     <i data-feather="log-out" class="icon-dual icon-xs mr-2"></i>
@@ -167,7 +148,7 @@
 
                             <div class="dropdown-divider"></div>
 
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <a href="{% url 'logout' %}" class="dropdown-item notify-item">
                                 <i data-feather="log-out" class="icon-dual icon-xs mr-2"></i>
                                 <span>Logout</span>
                             </a>
@@ -189,7 +170,7 @@
                             </li>
                             <li class="menu-title">Apps</li>
                             <li>
-                                <a href="#">
+                                <a href="{% url 'calender' %}">
                                     <i data-feather="calendar"></i>
                                     <span> Calendar </span>
                                 </a>
@@ -203,10 +184,10 @@
 
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li>
-                                        <a href="{% url 'employeeadd' %}">Add Employee</a>
+                                        <a href="{% url 'adminemployeeadd' %}">Add Employee</a>
                                     </li>
                                     <li>
-                                        <a href="{% url 'employees' %}"> Employee List</a>
+                                        <a href="{% url 'adminemployees' %}"> Employee List</a>
                                     </li>
                                 </ul>
                             </li>

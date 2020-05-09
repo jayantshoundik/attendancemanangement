@@ -9,6 +9,7 @@ from adminpanel.forms import ApplyLeaveForm,EmployeeForm,EditEmployeeForm
 from django.template.loader import render_to_string
 
 # Create your views here.
+@manager_required
 def dashboard(request):
     return render(request,'front/managerdashboard.html')
 
@@ -24,6 +25,12 @@ def manageleave(request):
     return render(request, 'front/manageleave.html', {'appliedleaves':appliedleaves})
 
 @manager_required
+def calender(request):
+    all_events = User.objects.filter(manager= request.user)
+    
+    return render(request, 'front/managercalender.html',{'events':all_events})
+
+@manager_required
 def addEmployee(request):
     if request.method == 'POST':
         form = EmployeeForm(request.POST,request.FILES)
@@ -31,13 +38,13 @@ def addEmployee(request):
             form.save()  
     else:
         form = EmployeeForm()
-    return render(request, 'adminpanel/addemployee.html', {'form': form})
+    return render(request, 'front/addemployee.html', {'form': form})
 
 @manager_required
 def employeeList(request):
     role = Role.objects.get(role='EMPLOYEE')
     employees = User.objects.filter(roles=role,manager= request.user)
-    return render(request, 'adminpanel/employeelist.html', {'employees': employees})
+    return render(request, 'front/employeelist.html', {'employees': employees})
 
 @manager_required
 def employeeEdit(request,pk):
@@ -51,7 +58,7 @@ def employeeEdit(request,pk):
     else:
         form = EditEmployeeForm(instance=employee)
 
-    data['html_form'] = render_to_string('adminpanel/partial_employee_edit.html', {'form': form}, request=request)
+    data['html_form'] = render_to_string('front/partial_employee_edit.html', {'form': form}, request=request)
     return JsonResponse(data)
 
 
