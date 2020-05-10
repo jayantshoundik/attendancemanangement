@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
-from adminpanel.models import User,Department,Leavetype,Role,Leave
+from adminpanel.models import User,Department,Leavetype,Role,Leave,EmployeeNotice
 from django.db import transaction
 
 
@@ -128,13 +128,22 @@ class ApplyLeaveForm(ModelForm):
     leaveend = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': "form-control basic-datepicker"}), required=True, help_text='Optional.')
     subject = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': "form-control"}), required=True, help_text='Optional.')
     reason = forms.CharField(max_length=30, widget=forms.Textarea(attrs={'class': "form-control"}), required=True, help_text='Optional.')
-    status = forms.ChoiceField(choices = STATUS, label='Status', widget=forms.Select(attrs={'class' :"form-control" ,'data-plugin':"customselect"})) 
-
+    
     class Meta:
         model = Leave
-        fields = ['leavetype','leavestart','leaveend','subject','reason','status']
+        fields = ['leavetype','leavestart','leaveend','subject','reason']
     def __str__(self):
         return self.subject
+
+class EmployeeNoticeForm(ModelForm):
+    title = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'class':"form-control",'id':"simpleinputname"}), required=False)
+    description = forms.CharField(max_length=30, widget=forms.Textarea(attrs={'class': "form-control"}), required=True, help_text='Optional.')
+    status = forms.ChoiceField(choices = STATUS, label='Manager', widget=forms.Select(attrs={'class' :"form-control" ,'data-plugin':"customselect"})) 
+    class Meta:
+        model = EmployeeNotice
+        fields = ('title','description', 'status')
+    def __str__(self):
+        return self.title
 
             
    

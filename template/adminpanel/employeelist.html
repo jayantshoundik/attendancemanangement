@@ -92,11 +92,11 @@ $(document).on('click','.edit_leavetype',function(){
         type: 'get',
         dataType: 'json',
         beforeSend: function () {
-            alert("dlkskdl")
+            
         $("#bs-example-modal-xl").modal("show");
         },
         success: function (data) {
-            alert(data)
+            
             $("#bs-example-modal-xl .modal-body").html(data.html_form);
         }
     });

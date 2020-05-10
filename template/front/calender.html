@@ -152,7 +152,6 @@
 <script src="{% static 'assets/libs/fullcalendar-list/main.min.js' %}"></script>
 <script src="{% static 'assets/libs/fullcalendar-interaction/main.min.js' %}"></script>
 
-<script src="{% static 'assets/js/pages/calendar.init.js' %}"></script>
 <script>
     ! function(i) {
         "use strict";
@@ -249,34 +248,7 @@
     
     
     {% endblock %}
-<script>
 
-    $(document).ready(function() {
-
-        $('#calendar').fullCalendar({
-            defaultDate: '2016-07-19',
-            editable: true,
-            eventLimit: true, // allow "more" link when too many events
-            events: [
-                {% for i in events %}
-                {
-                    title: "{{ i.attendancedate}}",
-                    start: '{{ i.attendancedate|date:"Y-m-d" }}',
-                    end: '{{ i.attendancedate|date:"Y-m-d" }}',
-
-                },
-                {% endfor %}
-
-            ]
-        });
-
-    });
-
-</script>
-
-
-
-{% endblock %}
 
             <!-- ============================================================== -->
             <!-- End Page content -->

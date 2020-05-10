@@ -15,13 +15,16 @@ def dashboard(request):
 
 @manager_required
 def manageattendance(request):
-    usermanager = User.objects.get(manager= request.user)
-    manageattendance = Attendance.objects.filter(reference=usermanager)
+    usermanager = User.objects.filter(manager = request.user)
+  
+    manageattendance = Attendance.objects.filter(reference__in = usermanager)
+    
     return render(request, 'front/manageattendance.html',{'manageattendances':manageattendance})
 
 @manager_required
 def manageleave(request):
-    appliedleaves = Leave.objects.filter(reference = request.user) 
+    usermanager = User.objects.filter(manager = request.user)
+    appliedleaves = Leave.objects.filter(reference__in = usermanager)
     return render(request, 'front/manageleave.html', {'appliedleaves':appliedleaves})
 
 @manager_required

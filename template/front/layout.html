@@ -38,13 +38,13 @@
             <div class="navbar navbar-expand flex-column flex-md-row navbar-custom">
                 <div class="container-fluid">
                     <!-- LOGO -->
-                    <a href="index.html" class="navbar-brand mr-0 mr-md-2 logo">
+                    <a href="#" class="navbar-brand mr-0 mr-md-2 logo">
                         <span class="logo-lg">
-                            <img src="{% static 'assets/images/logo.png' %}" alt="" height="24" />
-                            <span class="d-inline h5 ml-1 text-logo">WeberSparsh</span>
+                            <img src="{% static 'assets/images/logo.png'  %}" alt="" height="24" />
+                            <span class="d-inline h5 ml-1 text-l">WeberSparsh</span>
                         </span>
                         <span class="logo-sm">
-                            <img src="{% static 'assets/images/logo.png' %}" alt="" height="24">
+                            <img src="{% static 'assets/images/logo.png'  %}" alt="" height="24">
                         </span>
                     </a>
 
@@ -58,8 +58,16 @@
                     </ul>
 
                     <ul class="navbar-nav flex-row ml-auto d-flex list-unstyled topnav-menu float-right mb-0">
-                        
-
+                        <li class="d-none d-sm-block">
+                            <div class="app-search">
+                                <form>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search...">
+                                        <span data-feather="search"></span>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
 
                         <li class="dropdown notification-list" data-toggle="tooltip" data-placement="left"
                             title="8 new unread notifications">
@@ -68,55 +76,27 @@
                                 <i data-feather="bell"></i>
                                 <span class="noti-icon-badge"></span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-lg">
-
-                                <!-- item-->
-                                <div class="dropdown-item noti-title border-bottom">
-                                    <h5 class="m-0 font-size-16">
-                                        <span class="float-right">
-                                            <a href="" class="text-dark">
-                                                <small>Clear All</small>
-                                            </a>
-                                        </span>Notification
-                                    </h5>
-                                </div>
-
-                                <div class="slimscroll noti-scroll">
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom">
-                                        <div class="notify-icon bg-primary"><i class="uil uil-user-plus"></i></div>
-                                        <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small>
-                                        </p>
-                                    </a>
-                                </div>
-
-                                <!-- All-->
-                                <a href="javascript:void(0);"
-                                    class="dropdown-item text-center text-primary notify-item notify-all border-top">
-                                    View all
-                                    <i class="fi-arrow-right"></i>
-                                </a>
-
-                            </div>
+                            
                         </li>
 
+                        
 
                         <li class="dropdown notification-list align-self-center profile-dropdown">
                             <a class="nav-link dropdown-toggle nav-user mr-0" data-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="false" aria-expanded="false">
                                 <div class="media user-profile ">
-                                    <img src="" alt="user-image" class="rounded-circle align-self-center" />
+                                    <img src="{% static 'assets/images/users/avatar-7.jpg' %}" alt="user-image" class="rounded-circle align-self-center" />
                                     <div class="media-body text-left">
                                         <h6 class="pro-user-name ml-2 my-0">
-                                            <span>{{ request.user.first_name }} {{request.user.last_name}}</span>
-                                            <span class="pro-user-desc text-muted d-block mt-1">{{request.user.username}} </span>
+                                            <span>WeberSparsh N</span>
+                                            <span class="pro-user-desc text-muted d-block mt-1">Administrator </span>
                                         </h6>
                                     </div>
                                     <span data-feather="chevron-down" class="ml-2 align-self-center"></span>
                                 </div>
                             </a>
-                            
+                            <div class="dropdown-menu profile-dropdown-items dropdown-menu-right">
+                               
 
                                 <a href="{% url 'logout' %}" class="dropdown-item notify-item">
                                     <i data-feather="log-out" class="icon-dual icon-xs mr-2"></i>
@@ -138,13 +118,18 @@
 
                     <div class="media-body">
                         <h6 class="pro-user-name mt-0 mb-0">{{ request.user.first_name }} {{request.user.last_name}}</h6>
-                        <span class="pro-user-desc">{{ request.user.first_name }}</span>
+                        <span class="pro-user-desc">Administrator</span>
                     </div>
                     <div class="dropdown align-self-center profile-dropdown-menu">
-                        <a href="{% url 'logout' %}" class="dropdown-item notify-item">
-                            <i data-feather="log-out" class="icon-dual icon-xs mr-2"></i>
-                            <span>Logout</span>
+                        <a class="dropdown-toggle mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                            aria-expanded="false">
+                            <span data-feather="chevron-down"></span>
                         </a>
+                        <div class="dropdown-menu profile-dropdown">
+                            <a href="{% url 'logout' %}" class="dropdown-item notify-item">
+                                <i data-feather="log-out" class="icon-dual icon-xs mr-2"></i>
+                                <span>Logout</span>
+                            </a>
                         </div>
                     </div>
                 </div>

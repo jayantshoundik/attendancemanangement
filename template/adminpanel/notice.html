@@ -1,4 +1,4 @@
-{% extends 'front/layout.html' %}
+{% extends 'adminpanel/layout.html' %}
 {% block content %}
             <div class="content-page">
                 <div class="content">
@@ -12,7 +12,7 @@
                                         <li class="breadcrumb-item active" aria-current="page">Advanced</li>
                                     </ol>
                                 </nav>
-                                <h4 class="mb-1 mt-0">Manage Leave</h4>
+                                <h4 class="mb-1 mt-0">Manage Notice</h4>
                             </div>
                         </div>
                     </div>
@@ -21,11 +21,11 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="header-title mt-0 mb-1">Add Leave Type</h4>
+                                    <h4 class="header-title mt-0 mb-1">Add Notice</h4>
                                     <p class="sub-header">
-                                        You can add Leave Type here
+                                        You can add Notice here
                                     </p>
-                                    <form  method="POST" action = "{% url 'applyleave' %}" enctype="multipart/form-data">
+                                    <form  method="POST" action = "{% url 'managenotice' %}" enctype="multipart/form-data">
                                     <div class="row">
                                         
                                             
@@ -74,9 +74,8 @@
                                     <table id="selection-datatable" class="table dt-responsive " width='100%'>
                                         <thead>
                                             <tr>
-                                                <th>Type</th>
-                                                <th>Limit</th>
-                                                <th>Reason</th>
+                                                <th>Title</th>
+                                                <th>Descriptions</th>
 
                                                 <th>Status</th>
                                             </tr>
@@ -84,20 +83,19 @@
                                     
                                     
                                         <tbody>
-                                            {% for appliedleave in appliedleaves %}
+                                            {% for notice in notices %}
                                                 
                                                 <tr>
-                                                    <td>{{appliedleave.leavetype.leavetype}}</td>
-                                                    <td>{{appliedleave.subject}}</td>
-                                                    <td>{{appliedleave.reason}}
+                                                    <td>{{notice.title}}</td>
+                                                    <td>{{notice.description}}</td>
 
                                                     </td>
                                                     <td>
-                                                        {% if appliedleave.status == 0 %}
-                                                            <span class="btn btn-danger">UnApproved</span>
+                                                        {% if notice.status == 0 %}
+                                                            <span class="btn btn-danger">In Active</span>
                                                              {% endif %}
-                                                        {% if appliedleave.status == 1 %}
-                                                            <span class="btn btn-success">Approved</span>
+                                                        {% if notice.status == 1 %}
+                                                            <span class="btn btn-success">Active</span>
                                                                 {% endif %}
                                                     </td>
                                                 </tr>
@@ -112,21 +110,7 @@
                         </div><!-- end col-->
                     </div>
                 </div> <!-- content -->
-                <div class="modal fade" id="bs-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="myExtraLargeModalLabel">Extra large modal</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            
-                        </div>                                                
-                    </div>
-                </div>
-            </div>
+                
 
 
                 

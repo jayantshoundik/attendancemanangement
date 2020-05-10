@@ -2,9 +2,9 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse,JsonResponse
 from project.decorators  import admin_required
 from django.contrib.auth import login as auth_login, authenticate,logout as auth_logout,get_user_model
-from adminpanel.models import User,Department,Leavetype,Role,Attendance,Leave
+from adminpanel.models import User,Department,Leavetype,Role,Attendance,Leave,EmployeeNotice
 
-from adminpanel.forms import EmployeeForm,DepartmentForm,ManagerForm,LeaveTypeForm,EditEmployeeForm,EditManagerForm
+from adminpanel.forms import EmployeeForm,DepartmentForm,ManagerForm,LeaveTypeForm,EditEmployeeForm,EditManagerForm,EmployeeNoticeForm
 from django.template.loader import render_to_string
 
 # Create your views here.
@@ -20,13 +20,13 @@ def addEmployee(request):
             form.save()  
     else:
         form = EmployeeForm()
-    return render(request, 'front/addemployee.html', {'form': form})
+    return render(request, 'adminpanel/addemployee.html', {'form': form})
 
 @admin_required
 def employeeList(request):
     role = Role.objects.get(role='EMPLOYEE')
     employees = User.objects.filter(roles=role)
-    return render(request, 'front/employeelist.html', {'employees': employees})
+    return render(request, 'adminpanel/employeelist.html', {'employees': employees})
 @admin_required
 def calender(request):
     all_events = User.objects.filter(roles_id = 3)
@@ -150,6 +150,25 @@ def manageAttendance(request):
 def manageLeave(request):
     appliedleaves = Leave.objects.all() 
     return render(request, 'adminpanel/leaves.html', {'appliedleaves':appliedleaves})
+
+@admin_required
+def managenotice(request):
+    if request.method == 'POST':
+        form = EmployeeNoticeForm(request.POST)
+        if form.is_valid():
+            form.save()  
+    else:
+        form = EmployeeNoticeForm()
+    notices = EmployeeNotice.objects.all() 
+    return render(request, 'adminpanel/notice.html', {'form':form,'notices':notices})
+
+def notification_context(request):
+    notifications = EmployeeNotice.objects.filter(status= 1)
+    return { 'notifications': {
+                    'object_list': notifications,
+                    'count': notifications.count(),
+                }
+            }
 
 
 

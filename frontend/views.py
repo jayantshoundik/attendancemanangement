@@ -63,8 +63,9 @@ def applyleave(request):
             obj.reference = request.user
             obj.leavestart = leavestart
             obj.leaveend = leaveend
+            obj.status = 0
             new = obj.save() 
-            return HttpResponse(new)
+            
     else:
         form = ApplyLeaveForm()
     appliedleaves = Leave.objects.filter(reference = request.user)
@@ -89,7 +90,12 @@ def calender(request):
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        if request.user.roles_id == 3:
+            return redirect('dashboard')
+        elif request.user.roles_id == 1:
+            return redirect('adminpanel/dashboard')
+        elif request.user.roles_id == 2:
+            return redirect('managerpanel/dashboard')
     if request.method == 'POST':
         username = request.POST.get('username')
         raw_password = request.POST.get('password')
@@ -97,12 +103,13 @@ def login(request):
         
         if user is not None:
             auth_login(request, user)
-            if user.roles_id == 1:
-                return redirect('adminpanel/dashboard')
-            elif user.roles_id == 2:
-                return redirect('managerpanel/dashboard')
-            elif user.roles_id == 3:
+            if user.roles_id == 3:
                 return redirect('dashboard')
+            elif user.roles_id == 1:
+                return redirect('adminpanel/adashboard')
+            elif user.roles_id == 2:
+                return redirect('managerpanel/mdashboard')
+            
     
     return render(request,'adminpanel/login.html')
 

@@ -89,19 +89,19 @@ class Attendance(models.Model):
     attendancedate = models.DateField(auto_now= False)
     reason = models.TextField()
     comment = models.TextField()
-    status = models.IntegerField(choices=STATUS, default=1)
+    status = models.IntegerField(choices=STATUS, default=0)
     updated_on = models.DateTimeField(auto_now= True)
     created_on = models.DateTimeField(auto_now_add=True)
 
 class EmployeeNotice(models.Model):
-    title =  models.ForeignKey(User, on_delete=models.CASCADE)
+    title =  models.CharField(max_length=255)
     description = models.TextField()
     status = models.IntegerField(choices=STATUS, default=1)
     updated_on = models.DateTimeField(auto_now= True)
     created_on = models.DateTimeField(auto_now_add=True)
 
 class ManagerNotice(models.Model):
-    title =  models.ForeignKey(User, on_delete=models.CASCADE)
+    title =  models.CharField(max_length=255)
     description = models.TextField()
     status = models.IntegerField(choices=STATUS, default=1)
     updated_on = models.DateTimeField(auto_now= True)

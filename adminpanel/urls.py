@@ -18,5 +18,6 @@ urlpatterns = [
      path('approvedleave/<int:pk>',views.approveLeave,name = 'approvedleave'),
      path('department',views.addDepartment,name = 'department'),
      path('calender',views.calender,name = 'calender'),
+     path('managenotice/',views.managenotice,name = 'managenotice'),
 
 ]
